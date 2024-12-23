@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Christmas Countdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+            z-index: 2;
+            margin-top: 50px;
+        }
+        .title {
+            font-size: 2.5em;
+            color: hsl(239, 78%, 57%);
+        }
+        .countdown {
+            font-size: 2em;
+            margin: 20px 0;
+            color: #f81717;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 1.2em;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80%;
+            background: linear-gradient(45deg, #a4272b, #68eb11, #fa1bbb, #a1c4fd);
+            background-size: 400% 400%;
+            animation: gradient 2s ease infinite;
+            z-index: 1;
+        }
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <h1 class="title">Jean Pierre NSABIMANA <br>
+            wishing you<br>
+            Merry Christmas!</h1>
+        <p class="countdown" id="countdown"></p>
+        <p class="footer">Wishing you a joyful and blessed Christmas!</p>
+    </div>
+
+    <audio>
+        <source src="C:\marry c\music\Lovely-Long-Version-chosic.com_.mp3" type="autoplay">
+        
+    </audio>
+
+    <script>
+        function updateCountdown() {
+            const christmasDate = new Date('December 25, 2024 00:00:00').getTime();
+            const now = new Date().getTime();
+            const timeDifference = christmasDate - now;
+
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown').innerHTML = 
+                `${days} Days, ${hours} Hours, ${minutes} Minutes, ${seconds} Seconds`;
+
+            if (timeDifference < 0) {
+                document.getElementById('countdown').innerHTML = "Merry Christmas!";
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
